@@ -29,7 +29,6 @@ const registro_cliente = async function (req, res) {
   } else {
     res.status(200).send({ message: "el_correo_ya_existe", data: undefined });
   }
-  res.status(200).send({ message: reg });
 };
 
 const login_cliente = async function (req, res) {
