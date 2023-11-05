@@ -1,0 +1,49 @@
+<div class="row" style="width: 100%; height: 100%; margin-top: 80px">
+  <div class="col-lg-7 mx-auto" style="display: flex; align-items: center">
+    <div class="px-md-5 px-4">
+      <h3 class="modal-title mt-4 mb-0 text-center mb-5">
+        Ecommerce | MEAN Stack
+      </h3>
+      <h3 class="font-size-sm text-muted text-center">
+        Ingresa al sistema con el correo electronico y contraseña usados en tu
+        registro o proporcionados por la empresa
+      </h3>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <div class="form-group">
+          <label for="signin-email">Correo Electronico</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="user.email"
+            placeholder="Correo Electronico"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="signin-password" class="form-label">Contraseña</label>
+          <div class="cs-password-toggle input-group-overlay">
+            <input
+              type="password"
+              class="form-control appended-form-control"
+              name="password"
+              [(ngModel)]="user.password"
+              placeholder="Your password"
+              required
+            />
+            <div class="input-group-append-overlay">
+              <label class="btn cs-password-toggle-btn input-group-text">
+                <input type="checkbox" class="custom-control-input" />
+                <i class="cxi-eye cs-password-toggle-indicator"></i>
+                <span class="sr-only">Show password</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Ingresar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
