@@ -143,59 +143,17 @@
                         >
                           Cancelar
                         </button>
-                        <button type="button" class="btn btn-danger">
-                          Borrar
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          (click)="eliminar(item._id)"
+                        >
+                          Eliminar
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <!-- <div
-                  class="modal fade"
-                  id="delete-{{ item._id }}"
-                  tabindex="-1"
-                  style="display: none"
-                  aria-hidden="true"
-                >
-                  <div
-                    class="modal-dialog modal-dialog-centered"
-                    role="document"
-                  >
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title">
-                          Eliminar, {{ item.nombres }} {{ item.apellidos }}
-                        </h4>
-                        <button
-                          class="btn-close"
-                          type="button"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <p class="fs-sm">Desea eliminar este cliente?</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          class="btn btn-secondary btn-sm"
-                          type="button"
-                          data-bs-dismiss="modal"
-                        >
-                          Cancelar
-                        </button>
-                        <button
-                          class="btn btn-primary btn-sm"
-                          (click)="eliminar(item._id)"
-                          type="button"
-                        >
-                          Si, eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </td>
             </tr>
           </tbody>

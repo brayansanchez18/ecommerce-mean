@@ -161,7 +161,7 @@ const eliminar_cliente_admin = async (req, res) => {
     if ((req.user.rol = "admin")) {
       var id = req.params["id"];
 
-      let reg = await Cliente.findByIdAndRemove({ _id: id });
+      let reg = await Cliente.findByIdAndDelete({ _id: id });
       res.status(200).send({ data: reg }); //linea que pinta lo eliminado
     } else {
       res.status(500).send({ message: "No_Access" });
