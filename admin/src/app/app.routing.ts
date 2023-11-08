@@ -6,6 +6,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { IndexClienteComponent } from './components/clientes/index-cliente/index-cliente.component';
 import { CreateClienteComponent } from './components/clientes/create-cliente/create-cliente.component';
 import { EditClienteComponent } from './components/clientes/edit-cliente/edit-cliente.component';
+import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
 
 const appRoute: Routes = [
   {
@@ -21,6 +22,10 @@ const appRoute: Routes = [
   {
     path: 'panel',
     children: [
+      /* -------------------------------------------------------------------------- */
+      /*                                  CLIENTES                                  */
+      /* -------------------------------------------------------------------------- */
+
       {
         path: 'clientes',
         component: IndexClienteComponent,
@@ -36,6 +41,20 @@ const appRoute: Routes = [
         component: EditClienteComponent,
         canActivate: [AdminGuard],
       },
+
+      /* -------------------------------- CLIENTES -------------------------------- */
+
+      /* -------------------------------------------------------------------------- */
+      /*                                  PRODUCTOS                                 */
+      /* -------------------------------------------------------------------------- */
+
+      {
+        path: 'productos/crear-producto',
+        component: CreateProductoComponent,
+        canActivate: [AdminGuard],
+      },
+
+      /* -------------------------------- PRODUCTOS ------------------------------- */
     ],
   },
   {
