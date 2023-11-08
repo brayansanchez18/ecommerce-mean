@@ -81,13 +81,14 @@
             </div>
 
             <div class="col-lg-12 form-group">
-              <textarea
-                class="form-control"
-                required
-                name="contenido"
-                [(ngModel)]="producto.contenido"
-                rows="15"
-              ></textarea>
+              <div class="col-lg-12 form-group">
+                <tinymce
+                  [config]="config"
+                  name="contenido"
+                  required
+                  [(ngModel)]="producto.contenido"
+                ></tinymce>
+              </div>
             </div>
           </div>
         </div>

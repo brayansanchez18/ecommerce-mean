@@ -13,6 +13,10 @@ export class CreateProductoComponent implements OnInit {
   public producto: any = {};
   public file: any = undefined;
   public imgSelect: any | ArrayBuffer = 'assets/img/01.png';
+  public config: any = {};
+  public token: any;
+  public load_btn = false;
+  public config_global: any = {};
 
   constructor() {}
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgxTinymceModule } from 'ngx-tinymce';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +34,9 @@ import { CreateProductoComponent } from './components/productos/create-producto/
     HttpClientModule,
     routing,
     NgbPaginationModule,
+    NgxTinymceModule.forRoot({
+      baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1/',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
