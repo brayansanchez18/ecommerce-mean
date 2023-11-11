@@ -35,7 +35,7 @@ export class CreateClienteComponent implements OnInit {
         .registro_cliente_admin(this.cliente, this.token)
         .subscribe(
           (response) => {
-            console.log(response);
+            // console.log(response);
             iziToast.show({
               title: 'Success',
               titleColor: 'FF0000',

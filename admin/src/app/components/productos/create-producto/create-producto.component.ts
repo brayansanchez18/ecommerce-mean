@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
+import { ProductoService } from 'src/app/services/producto.service';
 
 declare var jQuery: any;
 declare var $: any;
@@ -18,12 +20,44 @@ export class CreateProductoComponent implements OnInit {
   public load_btn = false;
   public config_global: any = {};
 
-  constructor() {}
+  constructor(
+    private _productoService: ProductoService,
+    private _adminService: AdminService
+  ) {
+    this.config = {
+      height: 500,
+    };
+    this.token = _adminService.getToken();
+  }
 
   ngOnInit(): void {}
 
   registro(registroForm: any) {
     if (registroForm.valid) {
+      if (this.file != undefined) {
+        // console.log(this.producto);
+        // console.log(this.file);
+
+        this._productoService
+          .registro_producto_admin(this.producto, this.file, this.token)
+          .subscribe(
+            (response) => {
+              // console.log(response);
+            },
+            (error) => {
+              // console.log(error);
+            }
+          );
+      } else {
+        iziToast.show({
+          title: 'Error',
+          titleColor: 'FF0000',
+          class: 'text-danger',
+          color: 'red',
+          position: 'topRight',
+          message: 'Debe subir una imagen',
+        });
+      }
     } else {
       iziToast.show({
         title: 'Error',
