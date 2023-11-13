@@ -13,5 +13,11 @@ api.post(
   [auth.auth, path],
   productoController.registro_producto_admin
 );
+api.get(
+  "/listar_productos_admin/:filtro?",
+  auth.auth,
+  productoController.listar_productos_admin
+);
+api.get("/obtener_portada/:img", productoController.obtener_portada);
 
 module.exports = api;

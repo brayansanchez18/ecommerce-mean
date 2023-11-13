@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -22,7 +23,8 @@ export class CreateProductoComponent implements OnInit {
 
   constructor(
     private _productoService: ProductoService,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private _router: Router
   ) {
     this.config = {
       height: 500,
@@ -38,14 +40,27 @@ export class CreateProductoComponent implements OnInit {
         // console.log(this.producto);
         // console.log(this.file);
 
+        this.load_btn = true;
         this._productoService
           .registro_producto_admin(this.producto, this.file, this.token)
           .subscribe(
             (response) => {
               // console.log(response);
+              iziToast.show({
+                title: 'Completo',
+                titleColor: 'FF0000',
+                class: 'text-danger',
+                color: 'green',
+                position: 'topRight',
+                message: 'El producto se registro correctamente',
+              });
+
+              this.load_btn = false;
+              this._router.navigate(['/panel/productos']);
             },
             (error) => {
               // console.log(error);
+              this.load_btn = false;
             }
           );
       } else {
@@ -57,6 +72,8 @@ export class CreateProductoComponent implements OnInit {
           position: 'topRight',
           message: 'Debe subir una imagen',
         });
+
+        this.load_btn = false;
       }
     } else {
       iziToast.show({
@@ -67,6 +84,8 @@ export class CreateProductoComponent implements OnInit {
         position: 'topRight',
         message: 'los datos de formulario no son validos',
       });
+
+      this.load_btn = false;
     }
   }
 
@@ -84,6 +103,11 @@ export class CreateProductoComponent implements OnInit {
         position: 'topRight',
         message: 'no hay una imagen de envio',
       });
+
+      this.load_btn = false;
+      $('#input-portada').text('Selecionar imagen');
+      this.imgSelect = 'assets/img/01.png';
+      this.file = undefined;
     }
     if (filee.size <= 4000000) {
       if (
