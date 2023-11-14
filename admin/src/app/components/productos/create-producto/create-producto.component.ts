@@ -59,7 +59,7 @@ export class CreateProductoComponent implements OnInit {
               this._router.navigate(['/panel/productos']);
             },
             (error) => {
-              // console.log(error);
+              console.log(error);
               this.load_btn = false;
             }
           );

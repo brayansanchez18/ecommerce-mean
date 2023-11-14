@@ -41,7 +41,7 @@ export class EditClienteComponent implements OnInit {
           }
         },
         (err) => {
-          // console.log(err);
+          console.log(err);
         }
       );
     });
@@ -67,7 +67,7 @@ export class EditClienteComponent implements OnInit {
             this._router.navigate(['/panel/clientes']);
           },
           (error) => {
-            // console.log(error);
+            console.log(error);
           }
         );
     } else {

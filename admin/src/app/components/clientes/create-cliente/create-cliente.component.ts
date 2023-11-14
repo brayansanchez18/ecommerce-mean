@@ -57,7 +57,7 @@ export class CreateClienteComponent implements OnInit {
             this._router.navigate(['/panel/clientes']);
           },
           (error) => {
-            // console.log(error);
+            console.log(error);
           }
         );
     } else {

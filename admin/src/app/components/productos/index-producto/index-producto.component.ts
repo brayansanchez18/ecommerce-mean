@@ -37,7 +37,7 @@ export class IndexProductoComponent implements OnInit {
       .listar_productos_admin(this.filtro, this.token)
       .subscribe(
         (response) => {
-          console.log(response);
+          // console.log(response);
           this.productos = response.data;
           this.load_data = false;
         },

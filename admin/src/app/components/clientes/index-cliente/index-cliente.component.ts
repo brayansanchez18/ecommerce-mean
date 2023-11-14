@@ -42,7 +42,7 @@ export class IndexClienteComponent implements OnInit {
           // }, 3000);
         },
         (error) => {
-          // console.log(error);
+          console.log(error);
         }
       );
   }
@@ -61,7 +61,7 @@ export class IndexClienteComponent implements OnInit {
               }, 1000);
             },
             (error) => {
-              // console.log(error);
+              console.log(error);
             }
           );
       } else {
@@ -80,7 +80,7 @@ export class IndexClienteComponent implements OnInit {
               }, 1000);
             },
             (error) => {
-              // console.log(error);
+              console.log(error);
             }
           );
       } else {
@@ -107,7 +107,7 @@ export class IndexClienteComponent implements OnInit {
       },
 
       (error) => {
-        // console.log(error);
+        console.log(error);
       }
     );
   }

@@ -19,5 +19,14 @@ api.get(
   productoController.listar_productos_admin
 );
 api.get("/obtener_portada/:img", productoController.obtener_portada);
-
+api.get(
+  "/obtener_producto_admin/:id",
+  auth.auth,
+  productoController.obtener_producto_admin
+);
+api.put(
+  "/actualizar_prodcuto_admin/:id",
+  [auth.auth, path],
+  productoController.actualizar_prodcuto_admin
+);
 module.exports = api;
