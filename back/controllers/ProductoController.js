@@ -148,10 +148,38 @@ const actualizar_prodcuto_admin = async function (req, res) {
   }
 };
 
+const eliminar_prodcuto_admin = async function (req, res) {
+  if (req.user) {
+    if ((req.user.rol = "admin")) {
+      var id = req.params["id"];
+
+      let reg = await Producto.findByIdAndDelete({ _id: id });
+
+      fs.stat(`./uploads/productos/${reg.portada}`, function (err) {
+        if (!err) {
+          fs.unlink(`./uploads/productos/${reg.portada}`, (err) => {
+            if (err) throw err;
+          });
+        }
+      });
+      res.status(200).send({ data: reg }); //linea que pinta lo eliminado
+    } else {
+      res
+        .status(500)
+        .send({ message: "no_access_for_role_eliminar_producto_admin" });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "no_access_for_headers_eliminar_producto_admin" });
+  }
+};
+
 module.exports = {
   registro_producto_admin,
   listar_productos_admin,
   obtener_portada,
   obtener_producto_admin,
   actualizar_prodcuto_admin,
+  eliminar_prodcuto_admin,
 };

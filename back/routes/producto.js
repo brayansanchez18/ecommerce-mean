@@ -29,4 +29,10 @@ api.put(
   [auth.auth, path],
   productoController.actualizar_prodcuto_admin
 );
+api.delete(
+  "/eliminar_prodcuto_admin/:id",
+  auth.auth,
+  productoController.eliminar_prodcuto_admin
+);
+
 module.exports = api;

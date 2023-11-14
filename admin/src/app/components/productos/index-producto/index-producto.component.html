@@ -149,47 +149,54 @@
                     >
                   </div>
                 </div>
-                <div
-                  class="modal fade"
-                  id="delete-{{ item._id }}"
-                  tabindex="-1"
-                  style="display: none"
-                  aria-hidden="true"
-                >
-                  <div
-                    class="modal-dialog modal-dialog-centered"
-                    role="document"
-                  >
+
+                <div id="delete-{{ item._id }}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title">Confirmacion de eliminacion</h4>
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="fa-solid fa-exclamation"></i>
+                        </div>
+                        <h4 class="modal-title w-100">Eliminar Producto</h4>
                         <button
-                          class="btn-close"
                           type="button"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
+                          class="close"
+                          data-dismiss="modal"
+                          aria-hidden="true"
+                        >
+                          &times;
+                        </button>
                       </div>
                       <div class="modal-body">
-                        <p class="fs-sm">
-                          {{ item.titulo }}, Desea eliminar este cliente?
+                        <p>
+                          Seguro que quieres eliminar el producto
+                          <span class="font-weight-bold">
+                            {{ item.titulo }}
+                          </span>
                         </p>
+                        <hr />
+                        <img
+                          style="width: 70px"
+                          [src]="url + 'obtener_portada/' + item.portada"
+                          class="img-thumbnail rounded-0"
+                          alt="Square image"
+                        />
                       </div>
-                      <div class="modal-footer">
+                      <div class="modal-footer justify-content-center">
                         <button
-                          class="btn btn-secondary btn-sm"
                           type="button"
-                          data-bs-dismiss="modal"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
                         >
                           Cancelar
                         </button>
                         <button
                           *ngIf="!load_btn"
-                          class="btn btn-primary btn-sm"
-                          (click)="eliminar(item._id)"
                           type="button"
+                          class="btn btn-danger"
+                          (click)="eliminar(item._id)"
                         >
-                          Si, eliminar
+                          Eliminar
                         </button>
                         <div
                           *ngIf="load_btn"
@@ -198,7 +205,7 @@
                           role="status"
                           disabled
                         >
-                          <span class="visually-hidden">Loading...</span>
+                          <!-- <span class="visually-hidden">Loading...</span> -->
                         </div>
                       </div>
                     </div>

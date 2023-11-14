@@ -82,4 +82,14 @@ export class ProductoService {
       );
     }
   }
+
+  eliminar_prodcuto_admin(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: token,
+    });
+    return this._http.delete(`${this.url}eliminar_prodcuto_admin/${id}`, {
+      headers: headers,
+    });
+  }
 }

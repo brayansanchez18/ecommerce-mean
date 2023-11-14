@@ -79,5 +79,28 @@ export class IndexProductoComponent implements OnInit {
     this.init_data();
   }
 
-  eliminar(id: any) {}
+  eliminar(id: any) {
+    this.load_btn = true;
+    this._productoService.eliminar_prodcuto_admin(id, this.token).subscribe(
+      (response) => {
+        iziToast.show({
+          title: 'Eliminado',
+          titleColor: 'FF0000',
+          class: 'text-danger',
+          color: 'green',
+          position: 'topRight',
+          message: 'El producto fue eliminado',
+        });
+        $('#delete-' + id).modal('hide');
+        $('.modal-backdrop').removeClass('show');
+
+        this.load_btn = false;
+        this.init_data();
+      },
+
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
