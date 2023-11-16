@@ -1,6 +1,8 @@
 "use strict";
 
 var Producto = require("../models/productos");
+var Inventario = require("../models/inventario");
+
 var fs = require("fs");
 var path = require("path");
 
@@ -18,6 +20,12 @@ const registro_producto_admin = async function (req, res) {
         .replace(/[^\w-]+/g, "");
       data.portada = portada_name;
       let reg = await Producto.create(data);
+      let inventario = await Inventario.create({
+        admin: req.user.sub,
+        cantidad: data.stock,
+        proveedor: "Primer registro",
+        producto: reg._id,
+      });
       res.status(200).send({ data: reg });
     } else {
       res.status(500).send({ message: "no_access_for_role" });
@@ -175,6 +183,80 @@ const eliminar_prodcuto_admin = async function (req, res) {
   }
 };
 
+const listar_inventario_producto_admin = async function (req, res) {
+  if (req.user) {
+    if ((req.user.rol = "admin")) {
+      var id = req.params["id"];
+      var reg = await Inventario.find({ producto: id })
+        .populate("admin")
+        .sort({ createdAt: -1 });
+
+      res.status(200).send({ data: reg });
+    } else {
+      res
+        .status(500)
+        .send({ message: "no_access_for_role_eliminar_producto_admin" });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "no_access_for_headers_eliminar_producto_admin" });
+  }
+};
+
+const eliminar_inventario_producto_admin = async function (req, res) {
+  if (req.user) {
+    if ((req.user.rol = "admin")) {
+      var id = req.params["id"];
+      let reg = await Inventario.findByIdAndDelete({ _id: id });
+      let prod = await Producto.findById({ _id: reg.producto });
+      let nuevo_stock = parseInt(prod.stock) - parseInt(reg.cantidad);
+      let producto = await Producto.findByIdAndUpdate(
+        { _id: reg.producto },
+        {
+          stock: nuevo_stock,
+        }
+      );
+
+      res.status(200).send({ data: producto });
+    } else {
+      res
+        .status(500)
+        .send({ message: "no_access_for_role_eliminar_producto_admin" });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "no_access_for_headers_eliminar_producto_admin" });
+  }
+};
+
+const registro_inventario_producto_admin = async function (req, res) {
+  if (req.user) {
+    if ((req.user.rol = "admin")) {
+      let data = req.body;
+      let reg = await Inventario.create(data);
+      let prod = await Producto.findById({ _id: reg.producto });
+      let nuevo_stock = parseInt(prod.stock) + parseInt(reg.cantidad);
+      let producto = await Producto.findByIdAndUpdate(
+        { _id: reg.producto },
+        {
+          stock: nuevo_stock,
+        }
+      );
+      res.status(200).send({ data: reg });
+    } else {
+      res
+        .status(500)
+        .send({ message: "no_access_for_role_eliminar_producto_admin" });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "no_access_for_headers_eliminar_producto_admin" });
+  }
+};
+
 module.exports = {
   registro_producto_admin,
   listar_productos_admin,
@@ -182,4 +264,7 @@ module.exports = {
   obtener_producto_admin,
   actualizar_prodcuto_admin,
   eliminar_prodcuto_admin,
+  listar_inventario_producto_admin,
+  eliminar_inventario_producto_admin,
+  registro_inventario_producto_admin,
 };

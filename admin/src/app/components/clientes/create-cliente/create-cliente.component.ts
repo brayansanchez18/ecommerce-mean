@@ -37,7 +37,7 @@ export class CreateClienteComponent implements OnInit {
           (response) => {
             // console.log(response);
             iziToast.show({
-              title: 'Success',
+              title: 'REGISTRADO',
               titleColor: 'FF0000',
               class: 'text-danger',
               color: 'green',
@@ -62,7 +62,7 @@ export class CreateClienteComponent implements OnInit {
         );
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERRROR',
         titleColor: 'FF0000',
         class: 'text-danger',
         color: 'red',

@@ -19,4 +19,4 @@ var ProductoSchema = Schema({
   createdAt: { type: Date, default: Date.now, required: true },
 });
 
-module.exports = mongoose.model("prooducto", ProductoSchema);
+module.exports = mongoose.model("producto", ProductoSchema);

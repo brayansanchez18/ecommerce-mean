@@ -63,7 +63,7 @@ export class IndexProductoComponent implements OnInit {
         );
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERROR',
         titleColor: 'FF0000',
         class: 'text-danger',
         color: 'red',

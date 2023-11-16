@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         (response) => {
           if (response.data == undefined) {
             iziToast.show({
-              title: 'Error',
+              title: 'ERROR',
               titleColor: 'FF0000',
               class: 'text-danger',
               color: 'red',
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       );
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERROR',
         titleColor: 'FF0000',
         class: 'text-danger',
         color: 'red',

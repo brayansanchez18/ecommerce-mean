@@ -87,7 +87,7 @@ export class UpdateProductoComponent implements OnInit {
             // console.log(response);
 
             iziToast.show({
-              title: 'Completo',
+              title: 'ACTUALIZADO',
               titleColor: 'FF0000',
               class: 'text-danger',
               color: 'green',
@@ -105,7 +105,7 @@ export class UpdateProductoComponent implements OnInit {
         );
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERROR',
         titleColor: '#FF0000',
         color: '#FFF',
         class: 'text-danger',
@@ -123,7 +123,7 @@ export class UpdateProductoComponent implements OnInit {
       //console.log(file);
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERROR',
         titleColor: '#FF0000',
         color: '#FFF',
         class: 'text-danger',
@@ -147,7 +147,7 @@ export class UpdateProductoComponent implements OnInit {
         this.file = file;
       } else {
         iziToast.show({
-          title: 'Error',
+          title: 'ERROR',
           titleColor: '#FF0000',
           color: '#FFF',
           class: 'text-danger',
@@ -160,7 +160,7 @@ export class UpdateProductoComponent implements OnInit {
       }
     } else {
       iziToast.show({
-        title: 'Error',
+        title: 'ERROR',
         titleColor: '#FF0000',
         color: '#FFF',
         class: 'text-danger',
