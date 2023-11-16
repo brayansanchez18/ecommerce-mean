@@ -13,7 +13,9 @@ declare var iziToast: any;
   styleUrls: ['./create-producto.component.css'],
 })
 export class CreateProductoComponent implements OnInit {
-  public producto: any = {};
+  public producto: any = {
+    categoria: '',
+  };
   public file: any = undefined;
   public imgSelect: any | ArrayBuffer = 'assets/img/01.png';
   public config: any = {};

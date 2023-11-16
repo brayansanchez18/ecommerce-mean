@@ -10,6 +10,7 @@ import { CreateProductoComponent } from './components/productos/create-producto/
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
 import { UpdateProductoComponent } from './components/productos/update-producto/update-producto.component';
 import { InventarioProductoComponent } from './components/productos/inventario-producto/inventario-producto.component';
+import { CreateCuponComponent } from './components/cupones/create-cupon/create-cupon.component';
 
 const appRoute: Routes = [
   {
@@ -73,6 +74,18 @@ const appRoute: Routes = [
       },
 
       /* -------------------------------- PRODUCTOS ------------------------------- */
+
+      /* -------------------------------------------------------------------------- */
+      /*                                   CUPONES                                  */
+      /* -------------------------------------------------------------------------- */
+
+      {
+        path: 'cupones/crear-cupon',
+        component: CreateCuponComponent,
+        canActivate: [AdminGuard],
+      },
+
+      /* --------------------------------- CUPONES -------------------------------- */
     ],
   },
   {
