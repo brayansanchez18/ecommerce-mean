@@ -1,3 +1,5 @@
+"use strict";
+
 var Cupon = require("../models/cupon");
 
 const listar_cupones_admin = async function (req, res) {
