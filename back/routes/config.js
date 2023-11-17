@@ -18,5 +18,6 @@ api.put(
   configController.actualizar_config_admin
 );
 api.get("/obtener_logo/:img", configController.obtener_logo);
+api.get("/obtener_config_publico", configController.obtener_config_publico);
 
 module.exports = api;

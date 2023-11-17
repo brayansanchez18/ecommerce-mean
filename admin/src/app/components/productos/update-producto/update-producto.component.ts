@@ -22,6 +22,7 @@ export class UpdateProductoComponent implements OnInit {
   public token: any;
   public url: any;
   public file: any;
+  public config_global: any = {};
 
   constructor(
     private _route: ActivatedRoute,
@@ -34,6 +35,16 @@ export class UpdateProductoComponent implements OnInit {
     };
     this.token = localStorage.getItem('token');
     this.url = GLOBAL.url;
+    this._adminService.obtener_config_publico().subscribe(
+      (response) => {
+        // console.log(response);
+        this.config_global = response.data;
+        // console.log(this.config_global);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit(): void {

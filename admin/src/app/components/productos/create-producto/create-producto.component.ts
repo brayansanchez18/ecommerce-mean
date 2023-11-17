@@ -32,6 +32,16 @@ export class CreateProductoComponent implements OnInit {
       height: 500,
     };
     this.token = _adminService.getToken();
+    this._adminService.obtener_config_publico().subscribe(
+      (response) => {
+        // console.log(response);
+        this.config_global = response.data;
+        // console.log(this.config_global);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit(): void {}

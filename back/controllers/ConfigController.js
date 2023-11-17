@@ -3,11 +3,12 @@
 var Config = require("../models/config");
 var fs = require("fs");
 var path = require("path");
+const ID = "6556db676b2fe97a71977298";
 
 const obtener_config_admin = async function (req, res) {
   if (req.user) {
     if ((req.user.rol = "admin")) {
-      let reg = await Config.findById({ _id: "6556db676b2fe97a71977298" });
+      let reg = await Config.findById({ _id: ID });
       res.status(200).send({ data: reg });
     } else {
       res
@@ -35,7 +36,7 @@ const actualizar_config_admin = async function (req, res) {
         //actualizacion del documento
 
         let reg = await Config.findByIdAndUpdate(
-          { _id: "6556db676b2fe97a71977298" },
+          { _id: ID },
           {
             categorias: JSON.parse(data.categorias),
             titulo: data.titulo,
@@ -57,7 +58,7 @@ const actualizar_config_admin = async function (req, res) {
       } else {
         console.log("no hay imagen");
         let reg = await Config.findByIdAndUpdate(
-          { _id: "6556db676b2fe97a71977298" },
+          { _id: ID },
           {
             categorias: data.categorias,
             titulo: data.titulo,
@@ -102,8 +103,14 @@ const obtener_logo = async function (req, res) {
   });
 };
 
+const obtener_config_publico = async function (req, res) {
+  let reg = await Config.findById({ _id: ID });
+  res.status(200).send({ data: reg });
+};
+
 module.exports = {
   actualizar_config_admin,
   obtener_config_admin,
   obtener_logo,
+  obtener_config_publico,
 };
