@@ -25,5 +25,10 @@ api.put(
   auth.auth,
   cuponController.actualizar_cupon_admin
 );
+api.delete(
+  "/eliminar_cupon_admin/:id",
+  auth.auth,
+  cuponController.eliminar_cupon_admin
+);
 
 module.exports = api;

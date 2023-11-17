@@ -90,9 +90,28 @@ const actualizar_cupon_admin = async function (req, res) {
   }
 };
 
+const eliminar_cupon_admin = async function (req, res) {
+  if (req.user) {
+    if ((req.user.rol = "admin")) {
+      var id = req.params["id"];
+      let reg = await Cupon.findByIdAndDelete({ _id: id });
+      res.status(200).send({ data: reg });
+    } else {
+      res
+        .status(500)
+        .send({ message: "no_access_for_role_eliminar_cupon_admin" });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "no_access_for_headers_eliminar_cupon_admin" });
+  }
+};
+
 module.exports = {
   listar_cupones_admin,
   registro_cupon_admin,
   obtener_cupon_admin,
   actualizar_cupon_admin,
+  eliminar_cupon_admin,
 };

@@ -67,5 +67,38 @@ export class IndexCuponComponent implements OnInit {
     );
   }
 
-  eliminar(id: any) {}
+  eliminar(id: any) {
+    this._cuponService.eliminar_cupon_admin(id, this.token).subscribe(
+      (response) => {
+        iziToast.show({
+          title: 'ELIMINADO',
+          titleColor: 'FF0000',
+          class: 'text-danger',
+          color: 'green',
+          position: 'topRight',
+          message: 'El cupon fue eliminado',
+        });
+        $('#delete-' + id).modal('hide');
+        $('.modal-backdrop').removeClass('show');
+
+        this._cuponService
+          .listar_cupones_admin(this.filtro, this.token)
+          .subscribe(
+            (response) => {
+              // console.log(response);
+              this.cupones = response.data;
+              this.load_data = false;
+            },
+            (err) => {
+              console.log(err);
+              this.load_data = false;
+            }
+          );
+      },
+
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
