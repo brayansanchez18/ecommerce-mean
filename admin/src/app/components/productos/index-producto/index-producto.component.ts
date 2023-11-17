@@ -74,7 +74,7 @@ export class IndexProductoComponent implements OnInit {
   }
 
   limpiar() {
-    console.log('limpiar');
+    // console.log('limpiar');
     this.filtro = '';
     this.init_data();
   }

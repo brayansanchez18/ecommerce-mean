@@ -13,6 +13,16 @@ export class CuponService {
     this.url = GLOBAL.url;
   }
 
+  listar_cupones_admin(filtro: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: token,
+    });
+    return this._http.get(`${this.url}listar_cupones_admin/${filtro}`, {
+      headers: headers,
+    });
+  }
+
   registro_cupon_admin(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
