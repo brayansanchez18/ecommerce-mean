@@ -38,6 +38,11 @@ api.delete(
   auth.auth,
   productoController.eliminar_prodcuto_admin
 );
+api.put(
+  "/actualizar_producto_variedades_admin/:id",
+  auth.auth,
+  productoController.actualizar_producto_variedades_admin
+);
 
 /* -------------------------------- PRODUCTOS ------------------------------- */
 

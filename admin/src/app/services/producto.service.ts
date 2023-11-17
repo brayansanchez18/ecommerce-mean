@@ -127,4 +127,20 @@ export class ProductoService {
       { headers: headers }
     );
   }
+
+  actualizar_producto_variedades_admin(
+    id: any,
+    data: any,
+    token: any
+  ): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: token,
+    });
+    return this._http.put(
+      `${this.url}actualizar_producto_variedades_admin/${id}`,
+      data,
+      { headers: headers }
+    );
+  }
 }

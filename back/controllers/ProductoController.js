@@ -257,6 +257,33 @@ const registro_inventario_producto_admin = async function (req, res) {
   }
 };
 
+const actualizar_producto_variedades_admin = async function (req, res) {
+  if (req.user) {
+    if (req.user.rol == "admin") {
+      let id = req.params["id"];
+      let data = req.body;
+      //console.log(data);
+      //console.log(req.files);
+      let reg = await Producto.findByIdAndUpdate(
+        { _id: id },
+        {
+          titulo_variedad: data.titulo_variedad,
+          variedades: data.variedades,
+        }
+      );
+      res.status(200).send({ data: reg });
+    } else {
+      res.status(500).send({
+        message: "no_access_for_role_actualizar_producto_variedades_admin",
+      });
+    }
+  } else {
+    res.status(500).send({
+      message: "no_access_for_headers_actualizar_producto_variedades_admin",
+    });
+  }
+};
+
 module.exports = {
   registro_producto_admin,
   listar_productos_admin,
@@ -267,4 +294,5 @@ module.exports = {
   listar_inventario_producto_admin,
   eliminar_inventario_producto_admin,
   registro_inventario_producto_admin,
+  actualizar_producto_variedades_admin,
 };
