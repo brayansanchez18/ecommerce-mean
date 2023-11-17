@@ -15,5 +15,15 @@ api.post(
   auth.auth,
   cuponController.registro_cupon_admin
 );
+api.get(
+  "/obtener_cupon_admin/:id",
+  auth.auth,
+  cuponController.obtener_cupon_admin
+);
+api.put(
+  "/actualizar_cupon_admin/:id",
+  auth.auth,
+  cuponController.actualizar_cupon_admin
+);
 
 module.exports = api;

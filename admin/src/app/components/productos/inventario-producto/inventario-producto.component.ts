@@ -112,7 +112,7 @@ export class InventarioProductoComponent implements OnInit {
         proveedor: inventarioForm.value.proveedor,
       };
 
-      console.log(data);
+      // console.log(data);
 
       this._productoService
         .registro_inventario_producto_admin(data, this.token)
