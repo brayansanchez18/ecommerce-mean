@@ -15,6 +15,7 @@ import { IndexCuponComponent } from './components/cupones/index-cupon/index-cupo
 import { UpdateCuponComponent } from './components/cupones/update-cupon/update-cupon.component';
 import { ConfigComponent } from './components/config/config.component';
 import { VariedadesProductoComponent } from './components/productos/variedades-producto/variedades-producto.component';
+import { GaleriaProductoComponent } from './components/productos/galeria-producto/galeria-producto.component';
 
 const appRoute: Routes = [
   {
@@ -79,6 +80,11 @@ const appRoute: Routes = [
       {
         path: 'productos/variedades/:id',
         component: VariedadesProductoComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'productos/galeria/:id',
+        component: GaleriaProductoComponent,
         canActivate: [AdminGuard],
       },
 

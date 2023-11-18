@@ -43,6 +43,16 @@ api.put(
   auth.auth,
   productoController.actualizar_producto_variedades_admin
 );
+api.put(
+  "/agregar_imagen_galeria_admin/:id",
+  [auth.auth, path],
+  productoController.agregar_imagen_galeria_admin
+);
+api.put(
+  "/eliminar_imagen_galeria_admin/:id",
+  auth.auth,
+  productoController.eliminar_imagen_galeria_admin
+);
 
 /* -------------------------------- PRODUCTOS ------------------------------- */
 

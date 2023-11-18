@@ -163,6 +163,8 @@ const eliminar_prodcuto_admin = async function (req, res) {
 
       let reg = await Producto.findByIdAndDelete({ _id: id });
 
+      // console.log(reg);
+
       fs.stat(`./uploads/productos/${reg.portada}`, function (err) {
         if (!err) {
           fs.unlink(`./uploads/productos/${reg.portada}`, (err) => {
@@ -284,6 +286,82 @@ const actualizar_producto_variedades_admin = async function (req, res) {
   }
 };
 
+const agregar_imagen_galeria_admin = async function (req, res) {
+  if (req.user) {
+    if (req.user.rol == "admin") {
+      let id = req.params["id"];
+      let data = req.body;
+      //console.log(data);
+      //console.log(req.files);
+      var img_path = req.files.imagen.path;
+      var name = img_path.split("\\");
+      var imagen_name = name[2];
+
+      let reg = await Producto.findByIdAndUpdate(
+        { _id: id },
+        {
+          $push: {
+            galeria: {
+              imagen: imagen_name,
+              _id: data._id,
+            },
+          },
+        }
+      );
+
+      res.status(200).send({ data: reg });
+    } else {
+      res.status(500).send({
+        message: "no_access_for_role_agregar_imagen_galeria_admin",
+      });
+    }
+  } else {
+    res.status(500).send({
+      message: "no_access_for_headers_agregar_imagen_galeria_admin",
+    });
+  }
+};
+
+const eliminar_imagen_galeria_admin = async function (req, res) {
+  if (req.user) {
+    if (req.user.rol == "admin") {
+      let id = req.params["id"];
+      let data = req.body;
+
+      // console.log(data);
+
+      let reg = await Producto.findByIdAndUpdate(
+        { _id: id },
+        {
+          $pull: {
+            galeria: {
+              _id: data._id,
+            },
+          },
+        }
+      );
+
+      fs.stat(`./uploads/productos/${data.imagen}`, function (err) {
+        if (!err) {
+          fs.unlink(`./uploads/productos/${data.imagen}`, (err) => {
+            if (err) throw err;
+          });
+        }
+      });
+
+      res.status(200).send({ data: reg });
+    } else {
+      res.status(500).send({
+        message: "no_access_for_role_eliminar_imagen_galeria_admin",
+      });
+    }
+  } else {
+    res.status(500).send({
+      message: "no_access_for_headers_eliminar_imagen_galeria_admin",
+    });
+  }
+};
+
 module.exports = {
   registro_producto_admin,
   listar_productos_admin,
@@ -295,4 +373,6 @@ module.exports = {
   eliminar_inventario_producto_admin,
   registro_inventario_producto_admin,
   actualizar_producto_variedades_admin,
+  agregar_imagen_galeria_admin,
+  eliminar_imagen_galeria_admin,
 };

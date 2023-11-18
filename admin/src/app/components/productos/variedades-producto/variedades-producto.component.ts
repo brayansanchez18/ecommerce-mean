@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -20,7 +20,8 @@ export class VariedadesProductoComponent {
 
   constructor(
     private _route: ActivatedRoute,
-    private _productoService: ProductoService
+    private _productoService: ProductoService,
+    private _ruoute_navigate: Router
   ) {
     this.url = GLOBAL.url;
     this.token = localStorage.getItem('token');
@@ -34,6 +35,7 @@ export class VariedadesProductoComponent {
             (response) => {
               if (response.data == undefined) {
                 this.producto = undefined;
+                this._ruoute_navigate.navigate(['/panel/productos']);
               } else {
                 this.producto = response.data;
               }
