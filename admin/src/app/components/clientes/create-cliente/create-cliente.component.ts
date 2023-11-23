@@ -50,7 +50,7 @@ export class CreateClienteComponent implements OnInit {
               apellidos: '',
               f_nacimiento: '',
               telefono: '',
-              dni: '',
+              // dni: '',
               email: '',
             };
             // this.load_btn = false;
