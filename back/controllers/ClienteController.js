@@ -191,43 +191,43 @@ const actualizar_cliente_guest = async function (req, res) {
   if (req.user) {
     var id = req.params["id"];
     var data = req.body;
+    console.log(data.password);
 
     if (data.password) {
+      console.log("con contraseña");
       bcrypt.hash(data.password, null, null, async function (err, hash) {
         var reg = await Cliente.findByIdAndUpdate(
           { _id: id },
           {
             nombres: data.nombres,
-            apellidos: hash.apellidos,
-            // email: data.email,
+            apellidos: data.apellidos,
             telefono: data.telefono,
             f_nacimiento: data.f_nacimiento,
+            dni: data.dni,
             genero: data.genero,
             pais: data.pais,
-            password: data.password,
+            password: hash,
           }
         );
         res.status(200).send({ data: reg });
       });
     } else {
+      console.log("sin contraseña");
       var reg = await Cliente.findByIdAndUpdate(
         { _id: id },
         {
           nombres: data.nombres,
           apellidos: data.apellidos,
-          // email: data.email,
           telefono: data.telefono,
           f_nacimiento: data.f_nacimiento,
+          dni: data.dni,
           genero: data.genero,
           pais: data.pais,
         }
       );
-      res.status(200).send({ data: reg });
     }
   } else {
-    res
-      .status(500)
-      .send({ message: "No_Access_for_headers_actualizar_cliente_guest" });
+    res.status(200).send({ data: reg });
   }
 };
 
