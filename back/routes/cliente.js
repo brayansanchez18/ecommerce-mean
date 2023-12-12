@@ -38,5 +38,10 @@ api.get(
   auth.auth,
   clienteController.obtener_cliente_guest
 );
+api.put(
+  "/actualizar_cliente_guest/:id",
+  auth.auth,
+  clienteController.actualizar_cliente_guest
+);
 
 module.exports = api;

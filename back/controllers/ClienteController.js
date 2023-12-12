@@ -187,6 +187,50 @@ const obtener_cliente_guest = async function (req, res) {
   }
 };
 
+const actualizar_cliente_guest = async function (req, res) {
+  if (req.user) {
+    var id = req.params["id"];
+    var data = req.body;
+
+    if (data.password) {
+      bcrypt.hash(data.password, null, null, async function (err, hash) {
+        var reg = await Cliente.findByIdAndUpdate(
+          { _id: id },
+          {
+            nombres: data.nombres,
+            apellidos: hash.apellidos,
+            // email: data.email,
+            telefono: data.telefono,
+            f_nacimiento: data.f_nacimiento,
+            genero: data.genero,
+            pais: data.pais,
+            password: data.password,
+          }
+        );
+        res.status(200).send({ data: reg });
+      });
+    } else {
+      var reg = await Cliente.findByIdAndUpdate(
+        { _id: id },
+        {
+          nombres: data.nombres,
+          apellidos: data.apellidos,
+          // email: data.email,
+          telefono: data.telefono,
+          f_nacimiento: data.f_nacimiento,
+          genero: data.genero,
+          pais: data.pais,
+        }
+      );
+      res.status(200).send({ data: reg });
+    }
+  } else {
+    res
+      .status(500)
+      .send({ message: "No_Access_for_headers_actualizar_cliente_guest" });
+  }
+};
+
 module.exports = {
   registro_cliente,
   login_cliente,
@@ -196,4 +240,5 @@ module.exports = {
   actualizar_cliente_admin,
   eliminar_cliente_admin,
   obtener_cliente_guest,
+  actualizar_cliente_guest,
 };

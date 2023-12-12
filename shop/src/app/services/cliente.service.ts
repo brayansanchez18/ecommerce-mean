@@ -29,4 +29,14 @@ export class ClienteService {
       headers: headers,
     });
   }
+
+  actualizar_cliente_guest(id: any, data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: token,
+    });
+    return this._http.put(`${this.url}actualizar_cliente_guest/${id}`, data, {
+      headers: headers,
+    });
+  }
 }
