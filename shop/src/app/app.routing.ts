@@ -4,6 +4,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { AuthGuard } from './guards/auth.guard';
+import { IndexProductosComponent } from './components/productos/index-productos/index-productos.component';
 
 const appRoute: Routes = [
   {
@@ -26,6 +27,17 @@ const appRoute: Routes = [
   },
 
   /* -------------------------------- USUARIOS -------------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  PRODUCTOS                                 */
+  /* -------------------------------------------------------------------------- */
+
+  {
+    path: 'productos',
+    component: IndexProductosComponent,
+  },
+
+  /* -------------------------------- PRODUCTOS ------------------------------- */
 ];
 
 export const appRoutingProviders: any[] = [];
