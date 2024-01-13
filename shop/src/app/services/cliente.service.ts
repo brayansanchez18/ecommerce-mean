@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GLOBAL } from './GLOBAL';
 import { Observable } from 'rxjs';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root',
 })
@@ -38,5 +38,34 @@ export class ClienteService {
     return this._http.put(`${this.url}actualizar_cliente_guest/${id}`, data, {
       headers: headers,
     });
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return false;
+    }
+    try {
+      const helper = new JwtHelperService();
+      var decodedToken = helper.decodeToken(token);
+
+      if (helper.isTokenExpired(token)) {
+        localStorage.clear();
+        return false;
+      }
+
+      if (!decodedToken) {
+        // localStorage.removeItem('token');
+        localStorage.clear();
+        return false;
+      }
+    } catch (error) {
+      // localStorage.removeItem('token');
+      localStorage.clear();
+      return false;
+    }
+
+    return true;
   }
 }
