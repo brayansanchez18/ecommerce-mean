@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 declare var noUiSlider: any;
 declare var $: any;
@@ -9,7 +10,21 @@ declare var $: any;
   styleUrls: ['./index-productos.component.css'],
 })
 export class IndexProductosComponent implements OnInit {
-  constructor() {}
+  public config_global: any = {};
+  public filter_categoria: any;
+
+  constructor(private _clienteService: ClienteService) {
+    this._clienteService.obtener_config_publico().subscribe(
+      (response) => {
+        // console.log(response);
+        this.config_global = response.data;
+        console.log(this.config_global);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   ngOnInit(): void {
     var slider: any = document.getElementById('slider');
@@ -33,5 +48,20 @@ export class IndexProductosComponent implements OnInit {
       $('.cs-range-slider-value-max').val(values[1]);
     });
     $('.noUi-tooltip').css('font-size', '11px');
+  }
+
+  buscar_categorias() {
+    console.log(this.filter_categoria);
+
+    if (this.filter_categoria) {
+      var search = new RegExp(this.filter_categoria, 'i');
+      this.config_global.categorias = this.config_global.categorias.filter(
+        (item: any) => search.test(item.titulo)
+      );
+    } else {
+      this._clienteService.obtener_config_publico().subscribe((response) => {
+        this.config_global = response.data;
+      });
+    }
   }
 }

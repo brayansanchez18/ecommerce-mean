@@ -12,6 +12,7 @@ export class NavComponent {
   public id: any;
   public user: any;
   public user_lc: any;
+  public config_global: any = {};
 
   constructor(
     private _clienteService: ClienteService,
@@ -19,6 +20,9 @@ export class NavComponent {
   ) {
     this.token = localStorage.getItem('token');
     this.id = localStorage.getItem('_id');
+    this._clienteService.obtener_config_publico().subscribe((response) => {
+      this.config_global = response.data;
+    });
 
     // console.log(this.user_lc);
 
